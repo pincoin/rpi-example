@@ -4,22 +4,22 @@
 import RPi.GPIO as GPIO
 import time
 
-pullup=15
-pulldown=18
+pullup_pin=15
+pulldown_pin=18
 
 def main():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pullup, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(pulldown, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(pullup_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(pulldown_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     while True:
         # 버튼이 눌렸을 때 처리사항이 길어지면
         # 다른 버튼을 눌러도 무응답
-        if GPIO.input(pullup) == GPIO.LOW:
+        if GPIO.input(pullup_pin) == GPIO.LOW:
             print('내부풀업저항 연결 스위치 눌림')
 
-        if GPIO.input(pulldown) == GPIO.HIGH:
+        if GPIO.input(pulldown_pin) == GPIO.HIGH:
             print('내부풀다운저항 연결 스위치 눌림')
 
         # sleep 시간이 너무 길면 버튼을 눌러도 무응답

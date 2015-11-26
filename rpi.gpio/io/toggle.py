@@ -4,8 +4,8 @@
 import RPi.GPIO as GPIO
 import time
 
-led=14
-pullup=15
+led_pin=14
+pullup_pin=15
 blink=False
 
 
@@ -24,12 +24,12 @@ def toggle(pin):
 def main():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(led, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(pullup, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(led_pin, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(pullup_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     while True:
-        if GPIO.input(pullup) == GPIO.LOW:
-            toggle(led)
+        if GPIO.input(pullup_pin) == GPIO.LOW:
+            toggle(led_pin)
 
         time.sleep(0.1)
 

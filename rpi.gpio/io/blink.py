@@ -4,7 +4,7 @@
 import RPi.GPIO as GPIO
 import time
 
-led=14
+led_pin=14
 
 def blink(pin):
     GPIO.output(pin, GPIO.HIGH)
@@ -20,10 +20,10 @@ def blink(pin):
 def main():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(led, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(led_pin, GPIO.OUT, initial=GPIO.LOW)
 
     for i in range(0, 5):
-        blink(led)
+        blink(led_pin)
 
 if __name__ == '__main__':
     try:
