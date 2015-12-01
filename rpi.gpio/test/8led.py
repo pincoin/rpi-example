@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import time
 import sys
 
-# 입력 파라미터로 GPIO 핀 번호 읽음
+# 테스트할 8비트 GPIO 핀
 led_pin = (14, 15, 18, 23, 24, 25, 8, 7)
 
 def turn_on(pin):
