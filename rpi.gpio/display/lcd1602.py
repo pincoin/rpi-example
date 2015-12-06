@@ -144,7 +144,7 @@ class Pincoin_CharLCD(object):
         GPIO.output(self.pin_e, False)
         time.sleep(self.E_DELAY)
 
-    def show(self, message, line):
+    def message(self, message, line):
         # 출력 라인 선택
         self.write_byte(line, self.LCD_CMD)
 
@@ -153,13 +153,31 @@ class Pincoin_CharLCD(object):
         for i in range(self.LCD_WIDTH):
             self.write_byte(ord(message[i]), self.LCD_CHR)
 
+    def home(self):
+        self.write_byte(self.CMD_RETURNHOME, self.LCD_CMD)
+        time.sleep(self.E_DELAY)
+
+    def clear(self):
+        self.write_byte(self.CMD_CLEARDISPLAY, self.LCD_CMD)
+        time.sleep(self.E_DELAY)
+
 if __name__ == '__main__':
     try:
         lcd = Pincoin_CharLCD()
         lcd.begin()
-        lcd.show("PINCOIN.INFO", lcd.LCD_LINE_1)
-        lcd.show("16x2 LCD Test", lcd.LCD_LINE_2)
-        time.sleep(1)
+
+        while True:
+            lcd.message("PINCOIN.INFO", lcd.LCD_LINE_1)
+            lcd.message("16x2 LCD Test", lcd.LCD_LINE_2)
+            time.sleep(2)
+
+            lcd.clear()
+            time.sleep(1)
+
+            lcd.message("1234567890123456", lcd.LCD_LINE_1)
+            lcd.message("abcdefghijklmnop", lcd.LCD_LINE_2)
+            time.sleep(2)
+
     except KeyboardInterrupt:
         pass
     finally:
